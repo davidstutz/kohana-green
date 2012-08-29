@@ -3,9 +3,9 @@
 The following table will save all rules for Green to run:
 
 	-- -----------------------------------------------------
-	-- Table `pl_rules`
+	-- Table `rules`
 	-- -----------------------------------------------------
-	CREATE  TABLE `pl_rules` (
+	CREATE  TABLE `rules` (
 	  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT ,
 	  `type` VARCHAR(255) NOT NULL ,
 	  `key` VARCHAR(255) NOT NULL ,
