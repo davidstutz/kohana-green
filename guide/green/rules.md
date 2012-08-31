@@ -28,3 +28,19 @@ The rule itself references a group existing in the configured hierarchy or some 
 
 * ':user': Access is granted to the user which added the model the rule is added on.
 * ':group': Access is granted to the group of the user which added the model the rule is added on.
+
+## Adding Rules
+
+Rules can be added either manually through SQL statements or using ORM:
+
+	$rule = ORM::factory('rule');
+	$rule->values(array(
+		'type' => $type,
+		'key' => $key,
+		'rule' => $rule,
+	));
+	$rule->save();
+
+This example expects you to extend the provided model the following way:
+
+	class Model_Rule extends Model_Green_Rule

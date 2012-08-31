@@ -36,7 +36,7 @@ return array(
 	 */
 	'logger' => array(
 		'model' => TRUE,
-		'controller' => TRUE,
+		'controller' => FALSE,
 		'action' => FALSE,
 	),
 );

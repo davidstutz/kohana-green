@@ -33,10 +33,12 @@ This configuration key defines what happens if rules for specific actions do not
 
 	'logger' => array(
 		'model' => TRUE,
-		'controller' => TRUE,
+		'controller' => FALSE,
 		'action' => FALSE,
 	),
 	
 * model: Log model actions.
 * controller: Log controller access.
 * action: Log controller/action access.
+
+Currently only logging of models is supported and required the [Yellow](https://github.com/Phrax1337/kohana-yellow) plugin.

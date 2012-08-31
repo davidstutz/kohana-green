@@ -29,7 +29,8 @@ And is replaced by the following construct:
 	// An array of arguments to pass to the method:
 	$args = array();
 
-	try {
+	try
+	{
 		// Pass model and actions plus arguments to Green.
 		// Green will execute it or throw an exception.
 		Green::instance()->allow($model, $action, $args);
@@ -38,6 +39,22 @@ And is replaced by the following construct:
 	{
 		// User has not the right to do so ...
 	}
+
+## Usage for Controllers and Actions
+
+To control access to specific controllers or actions the following code snippets can be used:
+
+	// For example in the template controller:
+	try
+	{
+		Green::instance()->proceed();
+	}
+	catch (Green_Access_Exception $e)
+	{
+		// User has not the right to access this page ...
+	}
+
+If the current user has not the right to access the controller or action a Green_Access_Exception will be thrown. The use may be redirected or similar.
 
 ## Checking Hierarchy
 
