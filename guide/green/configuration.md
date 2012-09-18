@@ -41,4 +41,4 @@ This configuration key defines what happens if rules for specific actions do not
 * controller: Log controller access.
 * action: Log controller/action access.
 
-Currently only logging of models is supported and required the [Yellow](https://github.com/Phrax1337/kohana-yellow) plugin.
+Currently only logging of models is supported and required the [Yellow](https://github.com/davidstutz/kohana-yellow) plugin.
