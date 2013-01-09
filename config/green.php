@@ -35,8 +35,7 @@ return array(
 	 * The logger can log each action allowed and denied on all models, controllers and actions.
 	 */
 	'logger' => array(
-		'model' => TRUE,
+		'model' => FALSE,
 		'controller' => FALSE,
-		'action' => FALSE,
 	),
 );

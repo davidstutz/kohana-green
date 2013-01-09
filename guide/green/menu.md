@@ -4,4 +4,3 @@
  - [Models](models)
  - [Rules](rules)
  - [Usage](usage)
- - [Logging](logging)

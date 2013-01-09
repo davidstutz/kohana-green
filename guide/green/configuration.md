@@ -29,16 +29,14 @@ This configuration key defines what happens if rules for specific actions do not
 * type: The type for the Kohana session driver. See the Kohana documentation for more information about session drivers.
 * key: The session key.
 
-## Logger
+## Logging
 
 	'logger' => array(
-		'model' => TRUE,
-		'controller' => FALSE,
-		'action' => FALSE,
+		'model' => new Yellow('log_model'), // Init a logger object.
+		'controller' => FALSE, // No controller logging.
 	),
 	
 * model: Log model actions.
 * controller: Log controller access.
-* action: Log controller/action access.
 
-Currently only logging of models is supported and required the [Yellow](https://github.com/Phrax1337/kohana-yellow) plugin.
+Logging requires the [Yellow](https://github.com/Phrax1337/kohana-yellow) module to be enabled or an other compatible module.

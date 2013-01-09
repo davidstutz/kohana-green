@@ -8,4 +8,4 @@
  * @copyright	(c) 2012 David Stutz
  * @license		http://opensource.org/licenses/bsd-3-clause
  */
-class Green_Access_Exception extends Kohana_Green_Access_Exception {}
+class Kohana_Green_Access_Exception {}

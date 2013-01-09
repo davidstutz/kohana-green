@@ -73,7 +73,7 @@ class Kohana_Green
 	 * 	}
 	 * 	catch (Green_Access_Esxception $e)
 	 * 	{
-	 * 		$this->request->redirect('no/access');
+	 * 		$this->redirect('no/access');
 	 * 	}
 	 * 
 	 * @throws Green_Access_Exception
@@ -84,17 +84,39 @@ class Kohana_Green
 		 * Check if an controller rule exists.
 		 * If a rule exists evaluate rule.
 		 */
-		$rule = ORM::factory('rule')->where('type', '=', 'controller')->and_where('key', '=', Request::current()->controller())->find();
-		if ($rule->loaded()
-			AND !$this->high_enough($rule->rule))
-		{
-			throw new Green_Access_Exception("Access denied.");
-		}
+		$controller = strtolower(Request::current()->controller());
+		$rules = ORM::factory('rule')->where('type', '=', 'controller')->and_where('key', '=', $controller)->find_all();
 		
-		if (!$rule->loaded()
+		/**
+		 * If no rules found and whitelsit is set up throw exception.
+		 */
+		if (sizeof($rules) == 0
 			AND $this->_config['whitelist'])
 		{
-			throw new Green_Access_Exception("Access denied.");
+			throw new Green_Access_Exception('access denied.');
+		}
+		
+		/**
+		 * Will go through all rules.
+		 * If one of the rules matches access is granted.
+		 */
+		
+		foreach ($rules as $rule)
+		{
+			if (!$this->high_enough($rule->rule))
+			{
+				throw new Green_Access_Exception('access denied.');
+			}
+		}
+		
+		/**
+		 * Log the controller if logging is enabled.
+		 */
+		if (FALSE !== $this->_config['logger']['controller'])
+		{
+			$this->_config['logger']['controller']->log(array(
+				'controller' => $controller,
+			));
 		}
 	}
 	
@@ -122,7 +144,7 @@ class Kohana_Green
 		 * Then check for action.
 		 * If not deny access.
 		 */
-		$rules = ORM::factory('rule')->where('type', '=', 'controller')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
+		$rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
 		
 		/**
 		 * If no rules found and whitelsit is set up throw exception.
@@ -138,27 +160,12 @@ class Kohana_Green
 		 * If one of the rules matches access is granted.
 		 */
 		
-		$model_access = TRUE;
-		
 		foreach ($rules as $rule)
 		{
-			if (preg_match('^:group$', $rule->rule))
+			if (!$this->high_enough($rule->rule))
 			{
-				$model_access = $model_access AND ($object->user->group->id === Red::instance()->get_user()->group->id);
+				throw new Green_Access_Exception('access denied.');
 			}
-			elseif (preg_match('^:user$', $rule->rule))
-			{
-				$model_access = $model_access AND ($object->user->id === Red::instance()->get_user()->id);
-			}
-			else
-			{
-				$model_access = $model_access AND $this->high_enough($rule->rule);
-			}
-		}
-		
-		if (!$model_access)
-		{
-			throw new Green_Access_Exception('access denied.');
 		}
 		
 		/**
@@ -167,14 +174,15 @@ class Kohana_Green
 		call_user_func_array(array($object, $method), $array);
 		
 		/**
-		 * Log the aciton if logging is enabled.
+		 * Log the method if logging is enabled.
 		 */
 		if (FALSE !== $this->_config['logger']['model'])
 		{
-			Yellow::log(Yellow::MODEL, array(
+			$this->_config['logger']['model']->log(array(
 				'model' => $object->object_name(),
 				'model_id' => $object->id,
 				'method' => $method,
+				'data' => serialize($object->as_array()),
 			));
 		}
 	}
