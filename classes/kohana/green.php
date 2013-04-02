@@ -58,7 +58,14 @@ class Kohana_Green
 			return FALSE;
 		}
 		
-		return $this->_config['hierarchy'][$user->group->name] >= $this->_config['hierarchy'][$group];
+		$group = ORM::factory('user_group', array('name' => $group));
+		
+		if (!$group->loaded())
+		{
+			return FALSE;
+		}
+		
+		return $user->group->position >= $group->position;
 	}
 	
 	/**
@@ -116,6 +123,7 @@ class Kohana_Green
 		{
 			$this->_config['logger']['controller']->log(array(
 				'controller' => $controller,
+				'uri' => Request::current()->uri(),
 			));
 		}
 	}
@@ -185,5 +193,46 @@ class Kohana_Green
 				'data' => serialize($object->as_array()),
 			));
 		}
+	}
+
+	/**
+	 * Checks it the user is allowed to perform the given method on the given model,
+	 * or on models with the given type, without executing the mehtod!
+	 * 
+	 * @param	mixed	object or object name
+	 * @param	string	mthod
+	 * @return	boolean	allowed
+	 */
+	public function is_allowed($mixed, $method)
+	{
+		$object_name = $mixed;
+		if (is_object($mixed))
+		{
+			$object_name = $mixed->object_name();
+		}
+		
+		$rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object_name . '.' . $method)->find_all();
+		
+		/**
+		 * If no rules found and whitelsit is set up throw exception.
+		 */
+		if (sizeof($rules) == 0
+			AND $this->_config['whitelist'])
+		{
+			return FALSE;
+		}
+		
+		/**
+		 * Go through all rules.
+		 */
+		foreach ($rules as $rule)
+		{
+			if (!$this->high_enough($rule->rule))
+			{
+				return FALSE;
+			}
+		}
+		
+		return TRUE;
 	}
 }

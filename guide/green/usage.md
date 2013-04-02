@@ -6,11 +6,11 @@ Green is based on the Singleton pattern:
 
 	Green::instance()->some_method();
 	
-The current instance can be thought as representing the current user logged in.
+The current instance can be thought as representing the current logged in user.
 
 ## Usage with Models
 
-Green is used to allow and control the access to models. Green follows the following principle: The model and the method to run are given to Green. Green then, following the defined rules, executes the method on the model if the current user is allowed to, or throws an Green_Access_Exception.
+Green is used to allow and control the access to models. Green follows the following principle: The model and the method to run are given to Green. Green then, following the defined rules, executes the method on the model if the current user is allowed to, or throws an `Green_Access_Exception`.
 
 Thus following code fragments are obsolet (but nevertheless this construct is still possible):
 
@@ -38,6 +38,14 @@ And is replaced by the following construct:
 	catch (Green_Access_Exception $e)
 	{
 		// User has not the right to do so ...
+	}
+	
+As alternative:
+
+	// Model can be an instance of the model or the object name of the model.
+	if (Green::instance()->is_allowed($model, $method))
+	{
+		// User is allowed to execute $method on $model.
 	}
 
 ## Usage for Controllers

@@ -18,7 +18,7 @@ There are two types of rules:
 The rule key defines the object on which the rule is added:
 
 * For 'controller' rules: The controller in lower case like Kohana expects it for routes.
-* For 'model' rules: The complete model name like ORM::factory() would expect it followed by '.' as separator and the method name to add the rule on.
+* For 'model' rules: The complete model name like `ORM::factory()` would expect it followed by `.` as separator and the method name to add the rule on.
 
 ## Adding Rules
 
@@ -32,6 +32,6 @@ Rules can be added either manually through SQL statements or using ORM:
 	));
 	$rule->save();
 
-This example expects you to extend the provided model the following way:
+This example expects that the provided model has been extended the following way:
 
 	class Model_Rule extends Model_Green_Rule

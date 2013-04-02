@@ -9,19 +9,6 @@
  * @license		http://opensource.org/licenses/bsd-3-clause
  */
 return array(
-
-	/**
-	 * Define the role hierarchy.
-	 * The key defines the role and the value the psoition within the hierarchy, the higher the better.
-	 * 
-	 * Note: Green expects all used groups to exists in the hierarchy.
-	 */
-	'hierarchy' => array(
-		'login' => 0,
-		'user' => 10,
-		'admin' => 20,
-		'super' => 30,
-	),
 	
 	/**
 	 * Green can either be used as blacklist or as whitelist.
