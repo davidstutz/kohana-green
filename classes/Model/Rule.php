@@ -2,10 +2,11 @@
 
 /**
  * Default ACL rule.
- * 
- * @package		Green
- * @author		David Stutz
- * @copyright	(c) 2012 David Stutz
- * @license		http://opensource.org/licenses/bsd-3-clause
+ *
+ * @package     Green
+ * @author      David Stutz
+ * @copyright   (c) 2013 David Stutz
+ * @license     http://opensource.org/licenses/bsd-3-clause
  */
-class Model_Rule extends Model_Green_Rule {}
+class Model_Rule extends Model_Green_Rule {
+}

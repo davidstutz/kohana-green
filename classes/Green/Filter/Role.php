@@ -1,12 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Exception thrown if access is not granted by Green.
+ * Green filter for checking whether the user has the appropriate group.
  *
  * @package     Green
  * @author      David Stutz
  * @copyright   (c) 2013 David Stutz
  * @license     http://opensource.org/licenses/bsd-3-clause
  */
-class Kohana_Green_Exception extends Kohana_Exception {
+class Green_Filter_Role extends Kohana_Green_Filter_Role {
 }

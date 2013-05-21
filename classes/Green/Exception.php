@@ -2,10 +2,11 @@
 
 /**
  * Exception thrown if access is not granted by Green.
- * 
- * @package		Green
- * @author		David Stutz
- * @copyright	(c) 2012 David Stutz
- * @license		http://opensource.org/licenses/bsd-3-clause
+ *
+ * @package     Green
+ * @author      David Stutz
+ * @copyright   (c) 2013 David Stutz
+ * @license     http://opensource.org/licenses/bsd-3-clause
  */
-class Green_Exception extends Kohana_Green_Exception {}
+class Green_Exception extends Kohana_Green_Exception {
+}
