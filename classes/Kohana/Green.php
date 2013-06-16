@@ -129,14 +129,6 @@ class Kohana_Green {
         }
 
         /**
-         * All tests passed. So execute method on object.
-         */
-        call_user_func_array(array(
-            $object,
-            $method
-        ), $array);
-
-        /**
          * Log the method if logging is enabled.
          */
         if (FALSE !== $this->_config['logger']['model']) {
@@ -147,6 +139,14 @@ class Kohana_Green {
                 'data' => serialize($object->as_array()),
             ));
         }
+
+        /**
+         * All tests passed. So execute method on object.
+         */
+        call_user_func_array(array(
+            $object,
+            $method
+        ), $array);
     }
 
     /**
@@ -158,7 +158,7 @@ class Kohana_Green {
      * @return	boolean	allowed
      */
     public function is_allowed($object, $method) {
-        $rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object->name() . '.' . $method)->find_all();
+        $rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
 
         /**
          * If no rules found throw exception.
@@ -171,7 +171,7 @@ class Kohana_Green {
          * Go through all rules.
          */
         foreach ($rules as $rule) {
-            if (!Green_Filter::factory($rule->rule, $object_name)->check()) {
+            if (!Green_Filter::factory($rule->rule, $object->object_name())->check()) {
                 throw new Green_Exception('Access denied.');
             }
         }
