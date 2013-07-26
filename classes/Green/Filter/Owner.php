@@ -8,5 +8,5 @@
  * @copyright   (c) 2013 David Stutz
  * @license     http://opensource.org/licenses/bsd-3-clause
  */
-class Green_Filter_Creator extends Kohana_Green_Filter_Creator {
+class Green_Filter_Owner extends Kohana_Green_Filter_Owner {
 }

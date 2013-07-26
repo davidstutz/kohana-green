@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Green filter for checking whether the user has the appropriate role.
+ * Green filter for checking whether the user has the appropriate group.
  *
  * @package     Green
  * @author      David Stutz

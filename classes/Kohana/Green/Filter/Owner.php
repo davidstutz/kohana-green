@@ -8,7 +8,7 @@
  * @copyright   (c) 2013 David Stutz
  * @license     http://opensource.org/licenses/bsd-3-clause
  */
-class Kohana_Green_Filter_Creator extends Green_Filter {
+class Kohana_Green_Filter_Owner extends Green_Filter {
     
     /**
      * Check the condition represented by the filter on the saved user.
