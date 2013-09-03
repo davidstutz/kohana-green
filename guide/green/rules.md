@@ -22,7 +22,7 @@ The rule key defines the object on which the rule is added:
 
 ## Filters
 
-The rule itself is defined by a filter. A filter is given the current context - meaning the controller or model/method we want to grant access to - and decides whether access can be granted or not (a filter evaluates to `TRUE` or `FALSE`). If Green is asked to grant access on a given context it simply fetches all rules for this context and evaluates the corresponding filters. To grant access all filters have to evaluate to `TRUE`. If no rules are found access will be denied. Beneath the context filters can rely on one additional parameter, which is given by the rule the following way:
+The rule itself is defined by a filter. A filter is given the current context - meaning the controller or model/method we want to grant access to - and decides whether access can be granted or not (a filter evaluates to `TRUE` or `FALSE`). If Green is asked to grant access on a given context it simply fetches all rules for this context and evaluates the corresponding filters. To grant access _one_ filter has to evaluate to `TRUE`. If no rules are found access will be denied. Beneath the context filters can rely on one additional parameter, which is given by the rule the following way:
 
     filter:parameter
 

@@ -39,7 +39,7 @@ class Kohana_Green_Filter {
         $filter = 'Green_Filter_' . ucfirst($rule);
         
         if (!class_exists($filter)) {
-            throw new Green_Exception('Filter \'' . $rule . '\' not found.');
+            throw new Green_Filter_Exception('Filter \'' . ucfirst($rule) . '\' not found.');
         }
         
         return new $filter($item, $constraint);

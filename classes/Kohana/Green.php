@@ -72,20 +72,19 @@ class Kohana_Green {
         $rules = ORM::factory('rule')->where('type', '=', 'controller')->and_where('key', '=', $controller)->find_all();
 
         /**
-         * If no rules found and whitelsit is set up throw exception.
-         */
-        if (sizeof($rules) <= 0) {
-            throw new Green_Exception('Access denied.');
-        }
-
-        /**
          * Will go through all rules.
          * If one of the rules matches access is granted.
+         * If no rules are found access is denied.
          */
+        $allowed = FALSE;
         foreach ($rules as $rule) {
-            if (!Green_Filter::factory($rule->rule, $controller)->check()) {
-                throw new Green_Exception('Access denied.');
+            if (Green_Filter::factory($rule->rule, $controller)->check()) {
+                $allowed = TRUE;
             }
+        }
+        
+        if (!$allowed) {
+            throw new Green_Exception('Access denied.');
         }
 
         /**
@@ -112,22 +111,21 @@ class Kohana_Green {
         $rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
 
         /**
-         * If no rules found and whitelsit is set up throw exception.
-         */
-        if (sizeof($rules) <= 0) {
-            throw new Green_Exception('Access denied.');
-        }
-
-        /**
          * Will go through all rules.
          * If one of the rules matches access is granted.
+         * If no rules are found access is denied.
          */
+        $allowed = FALSE;
         foreach ($rules as $rule) {
-            if (!Green_Filter::factory($rule->rule, $object)->check()) {
-                throw new Green_Exception('Access denied.');
+            if (Green_Filter::factory($rule->rule, $object)->check()) {
+                $allowed = TRUE;
             }
         }
-
+        
+        if (!$allowed) {
+            throw new Green_Exception('Access denied.');
+        }
+        
         /**
          * Log the method if logging is enabled.
          */
