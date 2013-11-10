@@ -170,7 +170,7 @@ class Kohana_Green {
          */
         foreach ($rules as $rule) {
             if (!Green_Filter::factory($rule->rule, $object->object_name())->check()) {
-                throw new Green_Exception('Access denied.');
+                return FALSE;
             }
         }
 
