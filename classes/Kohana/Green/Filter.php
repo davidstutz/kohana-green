@@ -30,7 +30,7 @@ class Kohana_Green_Filter {
     public static function factory($rule, $item) {
         
         $constraint = NULL;
-        if (preg_match('#^[a-zA-Z]+:[a-zA-Z]+$#', $rule)) {
+        if (preg_match('#^[a-zA-Z]+:[a-zA-Z0-9]+$#', $rule)) {
             $rule = explode(':', $rule);
             $constraint = array_pop($rule);
             $rule = array_shift($rule);
