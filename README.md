@@ -10,6 +10,27 @@ Green is part of a set of Kohana modules:
 
 For documentation see the guide/ subfolder or use Kohana's [Userguide](https://github.com/kohana/userguide) module.
 
+## Composer
+
+Installation via composer:
+
+    {
+        "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/davidstutz/kohana-green"
+            },
+            {
+                "type": "vcs",
+                "url": "https://github.com/davidstutz/kohana-red"
+            }
+        ],
+        "require": {
+            "davidstutz/kohana-red": "dev-master",
+            "davidstutz/kohana-green": "dev-master"
+        }
+    }
+
 ## License
 
 Copyright (c) 2013 - 2014 David Stutz
