@@ -4,7 +4,7 @@
     "description": "Access control module based on kohana-red.",
     "homepage": "https://davidstutz.de",
     "license": "BSD-3-Clause",
-    "keywords": ["kohana", "framework", "configuration"],
+    "keywords": ["kohana", "framework", "access-control"],
     "authors": [
         {
             "name": "David Stutz",
