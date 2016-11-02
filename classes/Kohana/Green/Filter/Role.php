@@ -5,7 +5,7 @@
  *
  * @package     Green
  * @author      David Stutz
- * @copyright   (c) 2013 - 2014 David Stutz
+ * @copyright   (c) 2013 - 2016 David Stutz
  * @license     http://opensource.org/licenses/bsd-3-clause
  */
 class Kohana_Green_Filter_Role extends Green_Filter {
@@ -16,7 +16,7 @@ class Kohana_Green_Filter_Role extends Green_Filter {
      * @return boolean  true on success
      */
     public function check() {
-        $role = ORM::factory('user_role', array('name' => $this->_constraint));
+        $role = ORM::factory('User_Role', array('name' => $this->_constraint));
         
         if (!$role->loaded()) {
             throw new Green_Exception('Filter_Role: Constraint \'' . $this->_constraint . '\' invalid. This role was not found.');

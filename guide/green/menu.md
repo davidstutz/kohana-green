@@ -1,5 +1,5 @@
 ## [Green](index)
  - [Configuration](configuration)
- - [SQL Scheme](sql-scheme)
+ - [SQL Schema](sql-schema)
  - [Rules](rules)
  - [Usage](usage)

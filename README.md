@@ -8,7 +8,11 @@ Green is part of a set of Kohana modules:
 * [Blue](https://github.com/davidstutz/kohana-blue): Red based user configuration module.
 * [Yellow](https://github.com/davidstutz/kohana-yellow): Green based logging solution.
 
-For documentation see the guide/ subfolder or use Kohana's [Userguide](https://github.com/kohana/userguide) module.
+For documentation see the `guide/` subfolder or use Kohana's [Userguide](https://github.com/kohana/userguide) module.
+
+**Make sure to use the correct SQL schema which can be found in `guide/green/sql-schema.md` or `schema.sql`.**
+
+A demonstration application can be found at [davidstutz/kohana-demo](https://github.com/davidstutz/kohana-demo).
 
 ## Composer
 

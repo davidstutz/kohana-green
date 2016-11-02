@@ -56,7 +56,7 @@ As example have a look at the `role` filter:
          * @return boolean  true on success
          */
         public function check() {
-            $role = ORM::factory('user_role', array('name' => $this->_constraint));
+            $role = ORM::factory('User_Role', array('name' => $this->_constraint));
 
             if (!$role->loaded()) {
                 throw new Green_Exception('Filter_Role: Constraint \'' . $this->_constraint . '\' invalid. This role was not found.');
@@ -72,14 +72,14 @@ The current context  - the model as object or controller as string - is accessib
 
 Rules can be added either manually through SQL statements or using ORM:
 
-	$rule = ORM::factory('rule');
-	$rule->values(array(
-		'type' => $type,
-		'key' => $key,
-		'rule' => $rule,
-	));
-	$rule->save();
+    $rule = ORM::factory('Rule');
+    $rule->values(array(
+        'type' => $type,
+        'key' => $key,
+        'rule' => $rule,
+    ));
+    $rule->save();
 
 This example expects that the provided model has been extended the following way:
 
-	class Model_Rule extends Model_Green_Rule
+    class Model_Rule extends Model_Green_Rule

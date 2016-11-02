@@ -4,25 +4,25 @@
  *
  * @package     Green
  * @author      David Stutz
- * @copyright   (c) 2013 - 2014 David Stutz
+ * @copyright   (c) 2013 - 2016 David Stutz
  * @license     http://opensource.org/licenses/bsd-3-clause
  */
 class Kohana_Green {
 
     /**
-     * @var	object	instance
+     * @var    object    instance
      */
     protected static $_instance;
 
     /**
-     * @var	array 	config
+     * @var    array     config
      */
     protected $_config;
 
     /**
      * Singleton.
      *
-     * @return	object	Green
+     * @return    object    Green
      */
     public static function instance() {
         if (!is_object(Green::$_instance)) {
@@ -42,8 +42,8 @@ class Kohana_Green {
     /**
      * Compares the given group with the group of current user logged in.
      *
-     * @param	string	group name
-     * @return	boolean	true if current group is higher or equal to given one.
+     * @param    string    group name
+     * @return    boolean    true if current group is higher or equal to given one.
      */
     public function has_role($role_name) {
         $user = Red::instance()->get_user();
@@ -52,7 +52,7 @@ class Kohana_Green {
             return FALSE;
         }
 
-        $role = ORM::factory('user_role', array('name' => $role_name));
+        $role = ORM::factory('User_Role', array('name' => $role_name));
 
         if (!$role->loaded()) {
             throw new Green_Exception('Role \'' . $role_name . '\' not found.');
@@ -69,7 +69,7 @@ class Kohana_Green {
      */
     public function proceed() {
         $controller = strtolower(Request::current()->controller());
-        $rules = ORM::factory('rule')->where('type', '=', 'controller')->and_where('key', '=', $controller)->find_all();
+        $rules = ORM::factory('Rule')->where('type', '=', 'controller')->and_where('key', '=', $controller)->find_all();
 
         /**
          * Will go through all rules.
@@ -102,13 +102,13 @@ class Kohana_Green {
      * Allow and thus execute given method on given object for current user.
      *
      * @throws Green_Exception
-     * @param	object	object to call method on
-     * @param	string	method to call
-     * @param	array 	additional parameters for method
-     * @return	boolean	allowed and executed.
+     * @param    object    object to call method on
+     * @param    string    method to call
+     * @param    array     additional parameters for method
+     * @return    boolean    allowed and executed.
      */
     public function allow($object, $method, $array = array()) {
-        $rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
+        $rules = ORM::factory('Rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
 
         /**
          * Will go through all rules.
@@ -151,12 +151,12 @@ class Kohana_Green {
      * Checks it the user is allowed to perform the given method on the given model
      * or on models with the given type, without executing the method!
      *
-     * @param	mixed	object or object name
-     * @param	string	mthod
-     * @return	boolean	allowed
+     * @param    mixed    object or object name
+     * @param    string    mthod
+     * @return    boolean    allowed
      */
     public function is_allowed($object, $method) {
-        $rules = ORM::factory('rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
+        $rules = ORM::factory('Rule')->where('type', '=', 'model')->and_where('key', '=', $object->object_name() . '.' . $method)->find_all();
 
         /**
          * If no rules found throw exception.
