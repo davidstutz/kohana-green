@@ -1,0 +1,27 @@
+{
+    "name": "davidstutz/kohana-green",
+    "type": "kohana-module",
+    "description": "Access control module based on kohana-red.",
+    "homepage": "https://davidstutz.de",
+    "license": "BSD-3-Clause",
+    "keywords": ["kohana"],
+    "authors": [
+        {
+            "name": "David Stutz",
+            "email": "davidstutz@web.de",
+            "homepage": "https://davidstutz.de",
+            "role": "developer"
+        }
+    ],
+    "support": {
+        "issues": "http://github.com/davidstutz/kohana-green",
+        "source": "http://github.com/davidstutz/kohana-green"
+    },
+    "require": {
+        "composer/installers": "~1.0",
+        "php": ">=5.3.3",
+        "kohana/core": ">=3.3",
+        "kohana/orm": ">=3.3",
+        "davidstutz/kohana-red": "dev-master"
+    }
+}
